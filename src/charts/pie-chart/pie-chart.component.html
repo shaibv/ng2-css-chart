@@ -4,5 +4,7 @@
 
 
 <div class="chart">
-    <div class="text"> {{percentage}} % </div>
+  <div class="chart-before" [ngStyle]="changeRotation()"></div>
+  <div class="chart-after"></div>
+  <div class="text"> {{percentage}} %</div>
 </div>

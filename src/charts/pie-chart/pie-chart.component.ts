@@ -19,7 +19,7 @@ import {Component, OnInit, Input} from '@angular/core';
               border-radius: 50%;
              }
 
-            .chart::after {
+            .chart-after {
                 content: '';
                 position: absolute;
                 width: 140px;
@@ -33,7 +33,7 @@ import {Component, OnInit, Input} from '@angular/core';
                 border-radius: 50%;
               }
 
-            .chart::before {
+            .chart-before {
                 content: '';
                 position: absolute;
                 display: block;
@@ -43,7 +43,7 @@ import {Component, OnInit, Input} from '@angular/core';
                 bottom: 0;
                 right: 0;
                 border-radius: 0 100% 100% 0 / 50%;
-                transform: rotate(0.1turn);
+                transform: rotate( 0.75 turn);
                 transform-origin: 0 50%;
               }
 
@@ -70,26 +70,35 @@ export class PieChartComponent implements OnInit {
   @Input()
   value:number;
 
+  @Input()
+  test:string;
+
   private percentage:number;
   private rotation:number;
   private greaterThenHalf:boolean;
 
 
   constructor() {
-    this.value = 0.4;
+    //this.value = 0.4;
+
+
+  }
+
+  ngOnInit() {
     this.rotation = this.value;
     if (this.value > 0.5) {
       this.greaterThenHalf = true;
       this.rotation = this.value - 0.5;
     }
+    console.log('test: ' + this.test);
     console.log('value: ' + this.value);
     this.percentage = Math.round(this.value * 100);
     console.log('percentage: ' + this.percentage);
     var baseColor = 'black';
-
   }
 
-  ngOnInit() {
+  changeRotation(): any {
+    return { 'transform': 'rotate(' + this.rotation + 'turn)'  };
   }
 
 }
