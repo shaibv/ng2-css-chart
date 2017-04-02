@@ -4,19 +4,14 @@ import {Component, OnInit, Input} from '@angular/core';
   selector: 'ng2-pie-chart',
   templateUrl: './pie-chart.component.html',
   styles: [`
-
             .chart {
-              width: 200px;
-              height: 200px;
-              top: 55px;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              margin: auto;
-              position: absolute;
-              background: black linear-gradient(to right, black 50%, blue 50%);
-              color: black;
-              border-radius: 50%;
+                top: 55px;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                position: absolute;
+                border-radius: 50%;
              }
 
             .chart-after {
@@ -71,34 +66,58 @@ export class PieChartComponent implements OnInit {
   value:number;
 
   @Input()
-  test:string;
+  config:any;
 
   private percentage:number;
   private rotation:number;
+  private width:number;
+  private height:number;
+  private holeRadius:number;
+  private activeColor:string;
+  private backgroundColor:string;
   private greaterThenHalf:boolean;
 
 
   constructor() {
-    //this.value = 0.4;
-
-
+    debugger;
+    this.config = this.config || {};
+    this.activeColor = this.config.activeColor || 'blue';
+    this.backgroundColor = this.config.backgroundColor || 'black';
+    this.holeRadius = this.config.holeRadius || 0;
+    this.width = this.config.radius * 2 || 200;
+    this.height = this.config.radius || 200;
   }
 
   ngOnInit() {
     this.rotation = this.value;
+
     if (this.value > 0.5) {
       this.greaterThenHalf = true;
       this.rotation = this.value - 0.5;
     }
-    console.log('test: ' + this.test);
-    console.log('value: ' + this.value);
+
     this.percentage = Math.round(this.value * 100);
-    console.log('percentage: ' + this.percentage);
-    var baseColor = 'black';
+
   }
 
-  changeRotation(): any {
-    return { 'transform': 'rotate(' + this.rotation + 'turn)'  };
+  chartStyle():any {
+    return {
+      'width': this.width + 'px',
+      'height': this.height + 'px',
+      'background': 'black linear-gradient(to right, black 50%, ' + this.activeColor + ' 50%)'
+    };
+  }
+
+  holeStyle():any {
+    return {
+      'width': this.holeRadius * 2 + 'px',
+      'height': this.holeRadius * 2 + 'px',
+
+    };
+  }
+
+  changeRotation():any {
+    return {'transform': 'rotate(' + this.rotation + 'turn)', 'background-color': this.activeColor};
   }
 
 }

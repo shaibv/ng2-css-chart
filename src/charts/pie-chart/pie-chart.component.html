@@ -3,8 +3,8 @@
 </p>
 
 
-<div class="chart">
-  <div class="chart-before" [ngStyle]="changeRotation()"></div>
-  <div class="chart-after"></div>
+<div class="chart" [ngStyle]="chartStyle()">
+  <div class="chart-before" [ngStyle]="changeRotation()" [style.background-color]="activeColor"></div>
+  <div class="chart-after" [ngStyle]="holeStyle()"></div>
   <div class="text"> {{percentage}} %</div>
 </div>
