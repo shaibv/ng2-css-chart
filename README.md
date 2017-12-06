@@ -1,4 +1,5 @@
-# NewApp
+# Angular Progress Chart
+This package is a very light weight progress chart - Based purely on css style with no external dependencies.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
 
