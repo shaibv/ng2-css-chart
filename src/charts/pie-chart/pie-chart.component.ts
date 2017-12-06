@@ -4,58 +4,7 @@ import {ChartConfiguration} from "./Configuration";
 @Component({
   selector: 'ng2-pie-chart',
   templateUrl: './pie-chart.component.html',
-  styles: [`
-            .chart {
-                margin: auto;
-                position: relative;
-                border-radius: 50%;
-             }
-
-            .chart-after {
-                content: '';
-                position: absolute;
-                width: 140px;
-                height: 140px;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                background: white;
-                margin: auto;
-                border-radius: 50%;
-              }
-
-            .chart-before {
-                content: '';
-                position: absolute;
-                display: block;
-                background-color: blue ;
-                height: 200px;
-                width: 100px;
-                bottom: 0;
-                right: 0;
-                border-radius: 0 100% 100% 0 / 50%;
-                transform: rotate( 0.75 turn);
-                transform-origin: 0 50%;
-              }
-
-            .text {
-                position: absolute;
-                display: block;
-                top: 38%;
-                width: 100%;
-                text-align: center;
-                z-index: 1;
-                font-size: 34px;
-                color: @body-copy-color;
-              }
-
-            .greater-then-50:before {
-                background-color: @chart-active-color;
-              }
-
- `
-  ]
+  styleUrls: ['./pie-chart.component.less']
 })
 export class PieChartComponent implements OnInit {
 
@@ -127,10 +76,12 @@ export class PieChartComponent implements OnInit {
   changeRotation():any {
     let backgroundColor = this.greaterThenHalf ? this.activeColor : this.backgroundColor;
     return {
-      'background-color': this.backgroundColor,
+      'background-color': backgroundColor,
       'width': this.width / 2 + 'px',
       'height': this.height + 'px',
-      'transform': `rotate( ${this.rotation}turn)`
+      'border-radius': '0 100% 100% 0 / 50%',
+      'transform': `rotate( ${this.rotation}turn)`,
+
     };
   }
 
