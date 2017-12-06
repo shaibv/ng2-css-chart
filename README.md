@@ -1,28 +1,51 @@
-# Angular Progress Chart
-This package is a very light weight progress chart - Based purely on css style with no external dependencies.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
+# ng2modules-progresschart
+This package is a very lightweight progress chart - Based purely on css style with no external dependencies.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Get Started
 
-## Code scaffolding
+## installation
+1. Install ` ng2modules-progresschart ` using npm
+```
+$ npm i ng2modules-progresschart
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+2. Include ` progresschart ` library in application via `html`, `angular-cli` or `webpack`
+```html
+<script src="node_modules/easy-pie-chart/dist/progresschart.js"></script>
+```
 
-## Build
+## Usage
+Import the module to your module:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```js
+import { ProgressChartComponent } from 'ng2modules-progresschart';
 
-## Running unit tests
+// In your app's module
+imports: [
+  ProgressChartComponent
+]
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Use the easyPieChart directive into your component template:
+```js
+  //Pie Chart Configuration
+  public pieConfiguration:ChartConfiguration = {holeRadius:0,radius:150,backgroundColor:'#d6cbd3',activeColor:'#eca1a6'};
+  //Doughnut Chart Configuration
+  public doughnutConfiguration:ChartConfiguration = {holeRadius:100,radius:150,backgroundColor:'#f1e3dd',activeColor:'#667292',showText:true,text:{color:'#667292',size:44}};
+```
 
-## Running end-to-end tests
+```html
+<!--  <ng2-pie-chart [value]="percent" [configure]="configuration"></ng2-pie-chart> -->
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+<div>
+  <h3>Pie Chart</h3>
+  <ng2-pie-chart [value]="0.3" [configure]="pieConfiguration"></ng2-pie-chart>
+</div>
 
-## Further help
+<div>
+  <h3>Doughnut Chart</h3>
+  <ng2-pie-chart [value]="0.8" [configure]="doughnutConfiguration"></ng2-pie-chart>
+</div>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
