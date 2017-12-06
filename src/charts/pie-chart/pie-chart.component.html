@@ -1,10 +1,6 @@
-<p>
-  pie-chart works!
-</p>
-
 
 <div class="chart" [ngStyle]="chartStyle()">
-  <div class="chart-before" [ngStyle]="changeRotation()" [style.background-color]="activeColor"></div>
+  <div class="chart-before" [ngStyle]="changeRotation()" ></div>
   <div class="chart-after" [ngStyle]="holeStyle()"></div>
-  <div class="text"> {{percentage}} %</div>
+  <div class="text" [ngStyle]="textStyle()" *ngIf="this.configure.showText"> {{percentage}}%</div>
 </div>

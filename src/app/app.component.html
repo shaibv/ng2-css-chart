@@ -1,8 +1,15 @@
-<h1>
-  {{title}}
-
-</h1>
+<h1>{{title}}</h1>
 
 
-<ng2-pie-chart [value]="'0.3'"
-               [config]="{holeRadius:100,radius:150,backgroundColor:'black',activeColor:'red'}"></ng2-pie-chart>
+<div>
+  <h3>Pie Chart</h3>
+  <ng2-pie-chart [value]="0.3"
+                 [configure]="pieConfiguration"></ng2-pie-chart>
+</div>
+
+<div>
+
+  <h3>Doughnut Chart</h3>
+  <ng2-pie-chart [value]="0.8"
+                 [configure]="doughnutConfiguration"></ng2-pie-chart>
+</div>
