@@ -42,7 +42,7 @@ export class PieChartComponent implements OnInit {
     this.showText = this.configure.showText;
     if (this.configure.text) {
       this.textConfiguration = {
-        size: this.configure.text.size || '20px',
+        size: this.configure.text.size || '20',
         color: this.configure.text.color || 'black',
       }
     }
@@ -87,7 +87,7 @@ export class PieChartComponent implements OnInit {
 
   textStyle():any {
     return {
-      'font-size': this.textConfiguration.size,
+      'font-size': this.textConfiguration.size+'px',
       'color': this.textConfiguration.color
     };
   }
