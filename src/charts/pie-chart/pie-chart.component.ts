@@ -14,14 +14,15 @@ export class PieChartComponent implements OnInit {
   @Input()
   configure:ChartConfiguration;
 
-  private percentage:number;
-  private rotation:number;
+  public percentage:number;
+  public greaterThenHalf:boolean;
+  public rotation:number;
+
   private width:number;
   private height:number;
   private holeRadius:number;
-  private activeColor:string;
-  private backgroundColor:string;
-  private greaterThenHalf:boolean;
+  public activeColor:string;
+  public backgroundColor:string;
   private showText:boolean;
   private textConfiguration:any;
 
