@@ -1,16 +1,18 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "ES5",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "lib": [
-      "es2016",
-      "dom"
-    ]
-  }
+    "sourceMap": true,
+    "declaration": true
+  },
+  "files": [
+    "ng2-progress-chart.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+
 }
