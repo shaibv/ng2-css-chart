@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ChartConfiguration} from "./Configuration";
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'ng2-pie-chart',
@@ -25,6 +27,7 @@ export class PieChartComponent implements OnInit {
   public backgroundColor:string;
   private showText:boolean;
   private textConfiguration:any;
+  private animationDuration:number = 0;
 
 
   constructor() {
@@ -38,6 +41,7 @@ export class PieChartComponent implements OnInit {
     this.activeColor = this.configure.activeColor || 'blue';
     this.backgroundColor = this.configure.backgroundColor || 'black';
     this.holeRadius = this.configure.holeRadius || 0;
+    this.animationDuration = this.configure.animationDuration || 0;
     this.width = this.height = this.configure.radius * 2 || 200;
     this.rotation = this.value;
     this.showText = this.configure.showText;
@@ -47,18 +51,42 @@ export class PieChartComponent implements OnInit {
         color: this.configure.text.color || 'black',
       }
     }
-    this.greaterThenHalf = this.value > 0.5;
+    this.calculateValue();
+    if(this.animationDuration) {
+      this.initAnimation();
+    }
+  }
 
+  private calculateValue() {
+    this.greaterThenHalf = this.value > 0.5;
+    this.percentage = Math.round(this.value * 100);
+    this.rotation = this.value;
     if (this.value > 0.5) {
       this.rotation = this.value - 0.5;
     }
+  }
 
-    this.percentage = Math.round(this.value * 100);
+  private initAnimation() {
+    const FPS = 60;
+    let numOfSteps = (this.animationDuration / 1000) * FPS;
+    let step = this.value / numOfSteps;
+    this.value = 0;
+    this.calculateValue();
+    //
+    let subscription = Observable.interval((1000 / FPS)).subscribe(()=> {
+      if (numOfSteps > 0) {
+        numOfSteps--;
+        this.value += step;
+        this.calculateValue();
+      } else{
+        subscription.unsubscribe();
+      }
+    });
+
 
   }
 
   chartStyle():any {
-    console.log(`black linear-gradient(to right, ${this.backgroundColor} 50%,   ${this.activeColor}  50%)`);
     return {
       'width': this.width + 'px',
       'height': this.height + 'px',
@@ -88,7 +116,7 @@ export class PieChartComponent implements OnInit {
 
   textStyle():any {
     return {
-      'font-size': this.textConfiguration.size+'px',
+      'font-size': this.textConfiguration.size + 'px',
       'color': this.textConfiguration.color
     };
   }

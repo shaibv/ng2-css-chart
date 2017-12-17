@@ -1,17 +1,18 @@
-import {PieChartComponent} from "./pie-chart.component";
-import {ReflectiveInjector} from '@angular/core';
-import {tick} from '@angular/core/testing';
-import {ChartConfiguration} from "./Configuration";
 
-describe('PieChartComponent', () => {
+import {TestBed} from '@angular/core/testing';
+import {PieChartComponent} from "./pie-chart.component";
+
+describe('ProgressChartComponent', () => {
 
   let componentUnderTest:PieChartComponent;
-  let injector:ReflectiveInjector;
-
 
   Given(() => {
+    TestBed.configureTestingModule({
+      declarations: [],
+      providers: [PieChartComponent ]
+    });
+    componentUnderTest = TestBed.get(PieChartComponent);
 
-    componentUnderTest = injector.get(PieChartComponent);
 
   });
 
@@ -22,7 +23,6 @@ describe('PieChartComponent', () => {
 
     When(() => {
       componentUnderTest.ngOnInit();
-      tick();
     });
 
     Then(() => {
@@ -39,7 +39,6 @@ describe('PieChartComponent', () => {
 
     When(() => {
       componentUnderTest.ngOnInit();
-      tick();
     });
 
     Then(() => {
